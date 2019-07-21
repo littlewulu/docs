@@ -37,6 +37,7 @@ body:
 * [校验登录态 - 废弃](#校验登录态)
 * [获取公告内容](#获取公告内容)
 * [获取首页轮播图内容](#获取首页轮播图内容)
+* [获取信息流tab](#获取信息流tab)
 * [获取文章信息流](#获取文章信息流)
 * [自增文章阅读量](#自增文章阅读量)
 
@@ -222,6 +223,33 @@ http status code : 200
 }
 ```
 
+获取信息流tab
+-----------------------------
+
+```http
+GET /api/watermelon/article_tabs
+```
+
+#### 成功时
+
+http status code : 200
+
+```json
+{
+  "tabs": [
+    {
+      "id": 1,
+      "title": "新闻"
+    },
+    {
+      "id": 2,
+      "title": "时事"
+    }
+  ]
+}
+```
+
+
 获取文章信息流
 ------------------------------
 
@@ -229,35 +257,30 @@ http status code : 200
 GET /api/watermelon/article_flow
 ```
 
+| 参数 | 描述 | required |
+| --- | --- | --- |
+| tab_id | tab ID | Y |
+| page | 分页页码，从1开始，每页限定返回10条记录 | Y |
+
+
 #### 成功时  
 http status code : 200
 
 ```json
 {
- "flow": [
+  "articles": [
     {
-      "articles": [
-        {
-          "id": "文章id",
-          "article_title": "文章标题",
-          "article_url": "文章地址",
-          "article_image_url": "文章图片url",
-          "page_view_count": "文章阅读量",
-          "article_tab_id": "文章所属tab的ID",
-        },
-        {
-        
-        }
-      ],
-      "tab_info": {
-          "id": "tab ID",
-          "title": "tab 标题",
-      }
+      "id": "文章id",
+      "article_title": "文章标题",
+      "article_url": "文章地址",
+      "article_image_url": "文章图片url",
+      "page_view_count": "文章阅读量",
+      "article_tab_id": "文章所属tab的ID",
     },
     {
     
     }
- ]
+  ]
 }
 ```
 
