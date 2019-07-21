@@ -37,6 +37,8 @@ body:
 * [校验登录态 - 废弃](#校验登录态)
 * [获取公告内容](#获取公告内容)
 * [获取首页轮播图内容](#获取首页轮播图内容)
+* [获取文章信息流](#获取文章信息流)
+* [自增文章阅读量](#自增文章阅读量)
 
 
 
@@ -220,3 +222,74 @@ http status code : 200
 }
 ```
 
+获取文章信息流
+------------------------------
+
+```http
+GET /api/watermelon/article_flow
+```
+
+#### 成功时  
+http status code : 200
+
+```json
+{
+ "flow": [
+    {
+      "articles": [
+        {
+          "id": "文章id",
+          "article_title": "文章标题",
+          "article_url": "文章地址",
+          "article_image_url": "文章图片url",
+          "page_view_count": "文章阅读量",
+          "article_tab_id": "文章所属tab的ID",
+        },
+        {
+        
+        }
+      ],
+      "tab_info": {
+          "id": "tab ID",
+          "title": "tab 标题",
+      }
+    },
+    {
+    
+    }
+ ]
+}
+```
+
+
+自增文章阅读量
+-------------------------------
+
+```http
+POST /api/watermelon/article_page_view
+```
+
+| 参数 | 描述 | required |
+| --- | --- | --- |
+| article_id | 文章id | Y |
+
+#### 成功时
+
+http status code : 200
+
+```json
+{
+  "page_view_count": "自增之后的阅读量"
+}
+```
+
+#### 失败时
+
+http status code : 400  
+
+```json
+{
+  "code": "失败场景值",
+  "message": "失败提示信息"
+}
+```
