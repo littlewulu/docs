@@ -34,6 +34,7 @@ body:
 
 * [题库查询](#题库查询)
 * [登录](#登录)
+* [获取用户信息](#获取用户信息)
 * [校验登录态 - 废弃](#校验登录态)
 * [获取公告内容](#获取公告内容)
 * [获取首页轮播图内容](#获取首页轮播图内容)
@@ -121,6 +122,47 @@ http status code : 200
 ```json
 {
   "jwt": "jwt字符串"
+}
+```
+
+请求失败  
+http status code : 400  
+
+```json
+{
+  "code": "失败场景值",
+  "message": "失败提示信息"
+}
+```
+
+
+获取用户信息
+---------------------
+
+```http
+GET /api/watermelon/user_info
+```
+
+本接口需要jwt登录态
+
+#### 返回
+
+请求成功  
+http status code: 200  
+
+```json
+{
+  "user_info": {
+      "id": "user id",
+      "wc_union_id": "微信的用户union id",
+      "wc_open_id": "微信的用户open id",
+      "wc_nickname": "昵称",
+      "wc_avatar_url": "头像url",
+      "wc_gender": "性别",
+      "wc_province": "Guangdong",
+      "wc_city": "Guangzhou",
+      "wc_country": "China"
+    }
 }
 ```
 
@@ -274,6 +316,7 @@ http status code : 200
       "article_title": "文章标题",
       "article_url": "文章地址",
       "article_image_url": "文章图片url",
+      "article_outline": "文章概要",
       "page_view_count": "文章阅读量",
       "article_tab_id": "文章所属tab的ID",
     },
