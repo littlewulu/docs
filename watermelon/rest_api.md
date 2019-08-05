@@ -33,6 +33,7 @@ body:
 ### 接口列表
 
 * [题库查询](#题库查询)
+* [语音查询](#语音查询)
 * [登录](#登录)
 * [获取用户信息](#获取用户信息)
 * [校验登录态 - 废弃](#校验登录态)
@@ -93,6 +94,62 @@ http status code : 400
   "message": "失败提示信息"
 }
 ```
+
+
+语音查询
+--------------------
+
+```http
+POST /api/watermelon/voice_search
+```
+
+
+| 参数 | 描述 | required |
+| --- | --- | --- |
+| voice_file | 音频文件，mp3格式，小程序录制 | Y |
+
+请求content-type : multipart/form-data  
+
+题库语音搜索，需要登录态  
+
+本接口需要调用微信提供的免费语音识别接口，响应耗时需要2s以上，因此客户端最好提供友好的请求等待提示，比如等待响应的过程中唤起"加载图标"  
+微信提供的识别接口文档地址：[地址](https://developers.weixin.qq.com/doc/offiaccount/Intelligent_Interface/AI_Open_API.html)  
+
+#### 返回
+
+请求成功  
+http status code: 200  
+
+```json
+{
+  "question_list": [
+    {
+      "id": 2427,
+      "question_text": "“故人西辞黄鹤楼，烟花三月下扬州。孤帆远影碧空尽，唯见长江天际流”，是唐代诗人【A 李白】的诗作",
+      "category": 1,
+      "created_at": "2019-06-30T16:37:29+08:00",
+      "UpdatedAt": "2019-06-30T16:37:29+08:00"
+    },
+    {
+    
+    }
+  ],
+  "word_list": [
+        "李白", "故人"
+  ]  
+}
+```
+
+请求失败  
+http status code : 400  
+
+```json
+{
+  "code": "失败场景值",
+  "message": "失败提示信息"
+}
+```
+
 
 
 登录
