@@ -42,6 +42,7 @@ body:
 * [获取信息流tab](#获取信息流tab)
 * [获取文章信息流](#获取文章信息流)
 * [自增文章阅读量](#自增文章阅读量)
+* [广告免除](#广告免除)
 
 
 
@@ -416,3 +417,49 @@ http status code : 400
   "message": "失败提示信息"
 }
 ```
+
+
+广告免除
+-----------------------------
+
+此接口需要带上jwt
+
+### 创建免除记录
+
+```http
+POST /api/watermelon/ad_exemption
+```
+
+| 参数 | 描述 | required |
+| --- | --- | --- |
+| exempt_until | 该用户广告免除有效的时间点，必须为整数的时间戳 | Y |
+
+
+#### 成功时
+
+http status code : 200
+
+```json
+{
+  "user_id": 1,
+  "exempt_until": 123456   // 时间戳
+}
+```
+
+### 获取免除记录
+
+```http
+GET /api/watermelon/ad_exemption
+```
+
+#### 成功时
+
+http status code : 200
+
+```json
+{
+  "user_id": 1,
+  "exempt_until": 123456   // 该用户能够免除广告的有效时间戳，当用户不存在记录时，本时间戳为0
+}
+```
+
