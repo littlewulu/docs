@@ -43,6 +43,7 @@ body:
 * [获取文章信息流](#获取文章信息流)
 * [自增文章阅读量](#自增文章阅读量)
 * [广告免除](#广告免除)
+* [pdd.ddk查询接口](pdd.ddk查询接口)
 
 
 
@@ -462,4 +463,28 @@ http status code : 200
   "exempt_until": 123456   // 该用户能够免除广告的有效时间戳，当用户不存在记录时，本时间戳为0
 }
 ```
+
+pdd.ddk查询接口
+------------------------------
+
+此接口不需要jwt  
+
+pdd.ddk接口文档：https://open.pinduoduo.com/#/apidocument/port?portId=pdd.ddk.cms.prom.url.generate  
+
+* 此接口提供了ddk接口通用参数的处理，包括client_id, data_type, timestamp, sign  
+
+```http
+GET /api/watermelon/pdd/ddk/query
+```
+
+| 参数 | 描述 | required |
+| --- | --- | --- |
+| type | ddk的接口类型，如 pdd.ddk.top.goods.list.query | Y |
+| * | 业务参数，根据type的不同需要不同的业务参数 | Y |
+
+### 返回
+
+详见pdd.ddk接口文档
+
+
 
